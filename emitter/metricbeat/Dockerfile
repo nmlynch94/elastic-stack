@@ -5,5 +5,3 @@ USER root
 COPY metricbeat.yml /usr/share/metricbeat/
 
 RUN chown root:metricbeat /usr/share/metricbeat/metricbeat.yml
-
-USER metricbeat

@@ -8,6 +8,7 @@ services:
     networks:
       - lognet
   filebeat:
+    command: /bin/bash -c "./filebeat -e -d "publish""
     container_name: filebeat
     image: filebeats:latest
     volumes:
@@ -19,6 +20,8 @@ services:
     image: metricbeat:latest
     networks:
       - lognet
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
   lognet:

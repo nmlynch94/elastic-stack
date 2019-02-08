@@ -1,5 +1,5 @@
-output.elasticsearch:
-  hosts: ["http://elasticsearch:9200"]
+output.logstash:
+  hosts: ["logstash:5044"]
 
 metricbeat.modules:
 - module: docker
