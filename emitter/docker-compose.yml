@@ -1,0 +1,30 @@
+version: '3'
+services:
+  emitter:
+    container_name: time_emitter
+    image: emitter:latest
+    volumes:
+      - log_data:/home/logs/
+    networks:
+      - lognet
+  filebeat:
+    container_name: filebeat
+    image: filebeats:latest
+    volumes:
+      - log_data:/var/logs/
+    networks:
+      - lognet 
+  metricbeat:
+    container_name: metricbeat
+    image: metricbeat:latest
+    networks:
+      - lognet
+
+networks:
+  lognet:
+    external:
+      name: elasticstack_esnet
+
+volumes:
+  log_data:
+    driver: local
