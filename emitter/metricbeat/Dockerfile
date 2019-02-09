@@ -4,4 +4,4 @@ USER root
 
 COPY metricbeat.yml /usr/share/metricbeat/
 
-RUN chown root:metricbeat /usr/share/metricbeat/metricbeat.yml
+RUN chmod go-w /usr/share/metricbeat/metricbeat.yml

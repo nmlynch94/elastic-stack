@@ -1,7 +1,9 @@
 version: '3'
 services:
   elasticsearch:
-    image: elasticsearch:6.5.4
+    build:
+      context: ./elasticsearch
+    image: lynchy901/elasticsearch:6.5.4
     container_name: elasticsearch
     environment:
       - cluster.name=docker-cluster
@@ -27,8 +29,10 @@ services:
     networks:
       - esnet 
   logstash:
+    build:
+      context: ./logstash
     container_name: logstash
-    image: logstash:latest
+    image: lynchy901/logstash:6.5.4
     ports: 
       - 5044:5044
     networks:
