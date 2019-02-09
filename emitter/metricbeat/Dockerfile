@@ -4,4 +4,6 @@ USER root
 
 COPY metricbeat.yml /usr/share/metricbeat/
 
-RUN chmod go-w /usr/share/metricbeat/metricbeat.yml
+RUN /bin/bash -c "chmod go-w /usr/share/metricbeat/metricbeat.yml"
+
+CMD ["/bin/bash", "-c", "./metricbeat modules enable docker && ./metricbeat -e"]
