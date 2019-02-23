@@ -4,3 +4,6 @@ filebeat.inputs:
       - '/var/logs/*.txt'
 output.logstash:
     hosts: ["logstash:5044"]
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml

@@ -1,26 +1,29 @@
 version: '3'
 services:
   emitter:
-    container_name: time_emitter
     build:
       context: ./
     image: lynchy901/emitter:latest
+    deploy:
+      replicas: 1
     volumes:
       - log_data:/home/logs/
     networks:
       - lognet
   filebeat:
     command: /bin/bash -c "./filebeat -e -d "publish""
+    deploy:
+      replicas: 1
     build:
       context: ./filebeats
-    container_name: filebeat
     image: lynchy901/filebeats:6.5.4
     volumes:
       - log_data:/var/logs/
     networks:
       - lognet 
   metricbeat:
-    container_name: metricbeat
+    deploy:
+      replicas: 1
     build:
       context: ./metricbeat
     image: lynchy901/metricbeat:6.5.4

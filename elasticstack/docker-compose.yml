@@ -1,6 +1,8 @@
 version: '3'
 services:
   elasticsearch:
+    deploy:
+      replicas: 1
     build:
       context: ./elasticsearch
     image: lynchy901/elasticsearch:6.5.4
@@ -20,6 +22,8 @@ services:
     networks:
       - esnet
   kibana:
+    deploy:
+      replicas: 1
     container_name: kibana
     image: kibana:6.5.4
     environment:
@@ -29,6 +33,8 @@ services:
     networks:
       - esnet 
   logstash:
+    deploy:
+      replicas: 1
     build:
       context: ./logstash
     container_name: logstash
