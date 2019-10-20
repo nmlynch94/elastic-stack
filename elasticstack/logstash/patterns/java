@@ -1,0 +1,1 @@
+STACK_TRACE_MESSAGE ^(\t| *)?((?i)\bat\b|(?i)\bcaused by\b|\.\.\.) ?(.[A-Za-z0-9-_]*)*

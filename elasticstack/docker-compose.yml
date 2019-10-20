@@ -1,11 +1,9 @@
 version: '3'
 services:
   elasticsearch:
-    deploy:
-      replicas: 1
     build:
       context: ./elasticsearch
-    image: lynchy901/elasticsearch:6.5.4
+    image: elasticsearch:6.5.4
     container_name: elasticsearch
     environment:
       - cluster.name=docker-cluster
@@ -15,8 +13,8 @@ services:
       memlock:
         soft: -1
         hard: -1
-    volumes:
-      - esdata1:/usr/share/elasticsearch/data
+    # volumes:
+    #   - esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
     networks:
@@ -38,7 +36,11 @@ services:
     build:
       context: ./logstash
     container_name: logstash
-    image: lynchy901/logstash:6.5.4
+    image: nmlynch/logstash:6.5.4
+    environment:
+      - "LOG_LEVEL=debug"
+    volumes:
+      - ./logs_to_import:/usr/share/logstash/data_import
     ports: 
       - 5044:5044
     networks:
@@ -47,6 +49,7 @@ services:
 volumes:
   esdata1:
     driver: local
+  
 
 networks:
   esnet:
